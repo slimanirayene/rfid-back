@@ -11,19 +11,22 @@ app.use(cors());
 const Etudiant = mongoose.model("students", {
 	Nom: String,
 	Prenom: String,
-	date: Date,
+	date: String,
 });
 
 app.post("/logstudent", async (req, resp) => {
 	let firstName = req.body.Nom;
 	let lastName = req.body.Prenom;
-	let date = req.body.date;
+	let x = new Date();
+	let date = `${x.getDate()}/${
+		x.getMonth() + 1
+	}/${x.getFullYear()}, pointe: ${x.getHours()}:${x.getMinutes()}`;
 	console.log(lastName, firstName, date);
 
 	try {
 		const doc = new Etudiant({
-			Nom: lastName,
-			Prenom: firstName,
+			Nom: firstName,
+			Prenom: lastName,
 			date: date,
 		});
 		await doc.save();
