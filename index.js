@@ -37,7 +37,7 @@ app.post("/logstudent", async (req, resp) => {
 	}
 });
 
-app.get("/getallmessages", async (req, res) => {
+app.get("/getallstudents", async (req, res) => {
 	Etudiant.find({}, (err, messages) => {
 		if (!err) {
 			res.status(200);
